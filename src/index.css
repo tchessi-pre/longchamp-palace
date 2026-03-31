@@ -1,10 +1,237 @@
-html,
-body {
-  margin: 0;
-  padding: 0;
+@import url('https://fonts.googleapis.com/css2?family=Limelight&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Dancing+Script:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 30 15% 6%;
+    --foreground: 38 30% 88%;
+
+    --card: 30 10% 10%;
+    --card-foreground: 38 30% 88%;
+
+    --popover: 30 10% 10%;
+    --popover-foreground: 38 30% 88%;
+
+    --primary: 24 95% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 30 10% 15%;
+    --secondary-foreground: 38 30% 88%;
+
+    --muted: 30 8% 18%;
+    --muted-foreground: 38 15% 55%;
+
+    --accent: 24 95% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 30 10% 20%;
+    --input: 30 10% 20%;
+    --ring: 24 95% 50%;
+
+    --radius: 0.5rem;
+
+    --chalk: 38 30% 88%;
+    --chalkboard: 30 15% 6%;
+    --gold: 24 95% 50%;
+    --gold-light: 24 90% 62%;
+    --cream: 38 40% 92%;
+    --warm-dark: 30 10% 12%;
+
+    --font-display: 'Playfair Display', serif;
+    --font-chalk: 'Dancing Script', cursive;
+    --font-body: 'Cormorant Garamond', serif;
+    --font-elegant: 'Lora', serif;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
 }
 
-* {
-  box-sizing: border-box;
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
 }
 
+@layer components {
+  .chalk-text {
+    font-family: var(--font-chalk);
+    color: hsl(var(--chalk));
+    text-shadow: 0 0 10px hsla(var(--chalk) / 0.3);
+  }
+
+  .gold-text {
+    color: hsl(var(--gold));
+  }
+
+  .gold-glow {
+    text-shadow: 0 0 20px hsla(var(--gold) / 0.4), 0 0 40px hsla(var(--gold) / 0.2);
+  }
+
+  .chalkboard-bg {
+    background-color: hsl(var(--chalkboard));
+    background-image: 
+      radial-gradient(ellipse at 20% 50%, hsla(var(--gold) / 0.03) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, hsla(var(--chalk) / 0.02) 0%, transparent 50%);
+  }
+
+  .chalkboard-texture {
+    position: relative;
+  }
+
+  .chalkboard-texture::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .section-divider {
+    @apply flex items-center justify-center gap-4 my-8;
+  }
+
+  .section-divider::before,
+  .section-divider::after {
+    content: '';
+    @apply h-px flex-1;
+    background: linear-gradient(90deg, transparent, hsl(var(--gold) / 0.5), transparent);
+  }
+
+  .card-bistro {
+    @apply rounded-lg p-6 border transition-all duration-300;
+    background: hsl(var(--warm-dark));
+    border-color: hsl(var(--border));
+  }
+
+  .card-bistro:hover {
+    border-color: hsl(var(--gold) / 0.4);
+    box-shadow: 0 0 30px hsla(var(--gold) / 0.1);
+  }
+
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-3 rounded-md font-medium transition-all duration-300;
+    font-family: var(--font-display);
+    background: linear-gradient(135deg, hsl(var(--gold)), hsl(var(--gold-light)));
+    color: hsl(var(--chalkboard));
+    letter-spacing: 0.05em;
+  }
+
+  .btn-gold:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px hsla(var(--gold) / 0.3);
+  }
+
+  .btn-outline-chalk {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-3 rounded-md font-medium transition-all duration-300;
+    font-family: var(--font-display);
+    border: 1px solid hsl(var(--chalk) / 0.4);
+    color: hsl(var(--chalk));
+    letter-spacing: 0.05em;
+  }
+
+  .btn-outline-chalk:hover {
+    background: hsl(var(--chalk) / 0.1);
+    border-color: hsl(var(--chalk) / 0.6);
+    transform: translateY(-2px);
+  }
+
+  .gallery-item {
+    @apply overflow-hidden rounded-lg relative;
+  }
+
+  .gallery-item img {
+    @apply w-full h-full object-cover transition-transform duration-700;
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.08);
+  }
+
+  .gallery-item::after {
+    content: '';
+    @apply absolute inset-0 transition-opacity duration-300;
+    background: linear-gradient(to top, hsla(var(--chalkboard) / 0.6), transparent);
+    opacity: 0;
+  }
+
+  .gallery-item:hover::after {
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes chalkDraw {
+  from {
+    stroke-dashoffset: 1000;
+    opacity: 0;
+  }
+  to {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in-up-delay-1 {
+  animation: fadeInUp 0.8s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-up-delay-2 {
+  animation: fadeInUp 0.8s ease-out 0.4s forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-up-delay-3 {
+  animation: fadeInUp 0.8s ease-out 0.6s forwards;
+  opacity: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
