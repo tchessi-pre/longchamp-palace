@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Phone } from "lucide-react";
-import logo from "@/assets/logo.jpeg";
+import logo from "@/assets/logo2.png";
 
 const navItems = [
   { label: "Accueil", href: "#accueil" },
@@ -14,6 +14,7 @@ const navItems = [
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [activeHref, setActiveHref] = useState<string>("#accueil");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -21,11 +22,65 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!open) return;
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [open]);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  useEffect(() => {
+    const sectionIds = navItems
+      .map((item) => item.href)
+      .filter((href) => href.startsWith("#"))
+      .map((href) => href.slice(1));
+
+    const elements = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => Boolean(el));
+
+    if (elements.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => (b.intersectionRatio ?? 0) - (a.intersectionRatio ?? 0))[0];
+
+        if (!visible?.target?.id) return;
+        setActiveHref(`#${visible.target.id}`);
+      },
+      { rootMargin: "-20% 0px -70% 0px", threshold: [0.05, 0.1, 0.2, 0.4, 0.6] }
+    );
+
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth >= 1024) setOpen(false);
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${scrolled
-          ? "bg-background/95 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.4)] py-2"
-          : "bg-transparent py-4"
+      className={`fixed top-0 left-2 right-0 z-50 transition-all duration-700 ${scrolled
+        ? "bg-background/95 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.4)] py-2"
+        : "bg-transparent py-4"
         }`}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
@@ -34,14 +89,13 @@ const Navbar = () => {
           <img
             src={logo}
             alt="Longchamp Palace"
-            className={`transition-all duration-500 rounded-md ${scrolled ? "h-10 w-10" : "h-12 w-12"
+            className={`transition-all duration-500 rounded-md shadow-[0_10px_30px_rgba(0,0,0,0.25)] ${scrolled ? "h-10 w-10" : "h-10 w-10"
               }`}
           />
-          <span
-            className={`font-limelight text-primary transition-all duration-500 hidden sm:inline ${scrolled ? "text-lg md:text-xl" : "text-xl md:text-2xl lg:text-3xl"
-              }`}
-          >
-            LONGCHAMP PALACE
+          <span className={`font-limelight transition-all duration-500 hidden sm:inline ${scrolled ? "text-lg md:text-xl" : "text-xl md:text-2xl lg:text-3xl"
+            }`}>
+            <span className="text-white">LONGCHAMP</span>{" "}
+            <span className="text-primary">PALACE</span>
           </span>
         </a>
 
@@ -51,10 +105,14 @@ const Navbar = () => {
             <li key={item.href}>
               <a
                 href={item.href}
-                className="relative px-4 py-2 text-foreground/70 hover:text-primary transition-colors duration-300 font-elegant text-sm tracking-wider uppercase group"
+                className={`relative px-4 py-2 transition-colors duration-300 font-elegant text-sm tracking-wider uppercase group ${activeHref === item.href ? "text-primary" : "text-foreground/70 hover:text-primary"
+                  }`}
               >
                 {item.label}
-                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-px bg-primary transition-all duration-300 group-hover:w-3/4" />
+                <span
+                  className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-px bg-primary transition-all duration-300 ${activeHref === item.href ? "w-3/4" : "w-0 group-hover:w-3/4"
+                    }`}
+                />
               </a>
             </li>
           ))}
@@ -73,6 +131,8 @@ const Navbar = () => {
           onClick={() => setOpen(!open)}
           className="lg:hidden text-foreground p-2 hover:text-primary transition-colors"
           aria-label="Menu"
+          aria-expanded={open}
+          aria-controls="mobile-menu"
         >
           {open ? <X size={26} /> : <Menu size={26} />}
         </button>
@@ -80,6 +140,7 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       <div
+        id="mobile-menu"
         className={`lg:hidden overflow-hidden transition-all duration-500 ease-in-out ${open ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
           }`}
       >
@@ -90,7 +151,8 @@ const Navbar = () => {
                 <a
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="block px-6 py-3 text-foreground/80 hover:text-primary hover:bg-primary/5 transition-all font-elegant text-lg tracking-wider rounded-lg"
+                  className={`block px-6 py-3 hover:bg-primary/5 transition-all font-elegant text-lg tracking-wider rounded-lg ${activeHref === item.href ? "text-primary" : "text-foreground/80 hover:text-primary"
+                    }`}
                 >
                   {item.label}
                 </a>

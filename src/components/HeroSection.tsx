@@ -2,6 +2,7 @@ import { ChevronDown, MapPin, Clock, Star } from "lucide-react";
 import { WineGlass, Fork, Leaf } from "./ChalkIllustrations";
 import { useEffect, useState } from "react";
 import interiorImg from "@/assets/interieur.jpg";
+import logo from "@/assets/logo.png";
 
 const HeroSection = () => {
   const [loaded, setLoaded] = useState(false);
@@ -25,10 +26,10 @@ const HeroSection = () => {
           style={{ transform: loaded ? "scale(1.05)" : "scale(1.15)" }}
         />
         {/* Dark overlay */}
-        <div className="absolute inset-0 bg-background/80" />
+        <div className="absolute inset-0 bg-background/70" />
         {/* Gradient overlays */}
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/40" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-background/20" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-transparent to-transparent" />
       </div>
 
       {/* Curtain overlay */}
@@ -52,34 +53,34 @@ const HeroSection = () => {
 
       {/* Chalk illustrations */}
       <WineGlass
-        className="absolute top-28 left-6 md:left-16 w-10 md:w-14 text-foreground/15 animate-float transition-all duration-1000 ease-out"
-        style={{ opacity: loaded ? 0.12 : 0, transform: loaded ? "translateX(0)" : "translateX(-40px)", transitionDelay: "1.5s" }}
+        className="pointer-events-none absolute top-24 sm:top-28 left-3 sm:left-6 md:left-14 lg:left-20 w-8 sm:w-10 md:w-14 lg:w-16 text-foreground/15 animate-float transition-all duration-1000 ease-out"
+        style={{ opacity: loaded ? 0.1 : 0, transform: loaded ? "translateX(0)" : "translateX(-40px)", transitionDelay: "1.35s" }}
       />
       <Fork
-        className="absolute top-40 right-8 md:right-20 w-7 md:w-10 text-foreground/10 animate-float transition-all duration-1000 ease-out"
-        style={{ opacity: loaded ? 0.08 : 0, transform: loaded ? "translateX(0)" : "translateX(40px)", transitionDelay: "1.8s", animationDelay: "2s" }}
+        className="pointer-events-none absolute top-28 sm:top-40 right-3 sm:right-8 md:right-16 lg:right-24 w-6 sm:w-7 md:w-10 lg:w-12 text-foreground/10 animate-float transition-all duration-1000 ease-out"
+        style={{ opacity: loaded ? 0.07 : 0, transform: loaded ? "translateX(0)" : "translateX(40px)", transitionDelay: "1.55s", animationDelay: "2s" }}
       />
       <Leaf
-        className="absolute bottom-32 left-10 md:left-28 w-14 md:w-20 text-foreground/10 animate-float transition-all duration-1000 ease-out"
-        style={{ opacity: loaded ? 0.08 : 0, transform: loaded ? "translateX(0)" : "translateX(-40px)", transitionDelay: "2s", animationDelay: "4s" }}
+        className="pointer-events-none absolute bottom-24 sm:bottom-32 left-4 sm:left-10 md:left-24 lg:left-32 w-10 sm:w-14 md:w-20 lg:w-24 text-foreground/10 animate-float transition-all duration-1000 ease-out"
+        style={{ opacity: loaded ? 0.06 : 0, transform: loaded ? "translateX(0)" : "translateX(-40px)", transitionDelay: "1.8s", animationDelay: "4s" }}
       />
 
       {/* Decorative frame */}
       <div
-        className="absolute inset-6 md:inset-12 border border-primary/15 rounded-lg pointer-events-none transition-all [transition-duration:1.5s] ease-out"
-        style={{ opacity: loaded ? 1 : 0, transform: loaded ? "scale(1)" : "scale(0.97)", transitionDelay: "1s" }}
+        className="absolute inset-5 sm:inset-7 md:inset-16 lg:inset-24 border border-primary/15 rounded-lg sm:rounded-xl md:rounded-2xl pointer-events-none transition-all [transition-duration:1.5s] ease-out"
+        style={{ opacity: loaded ? 1 : 0, transform: loaded ? "scale(1)" : "scale(0.98)", transitionDelay: "1s" }}
       />
 
       {/* Corner ornaments */}
       {[
-        "top-6 left-6 md:top-12 md:left-12 border-t-2 border-l-2 rounded-tl-sm",
-        "top-6 right-6 md:top-12 md:right-12 border-t-2 border-r-2 rounded-tr-sm",
-        "bottom-6 left-6 md:bottom-12 md:left-12 border-b-2 border-l-2 rounded-bl-sm",
-        "bottom-6 right-6 md:bottom-12 md:right-12 border-b-2 border-r-2 rounded-br-sm",
+        "top-7 left-7 sm:top-9 sm:left-9 md:top-16 md:left-14 lg:top-20 lg:left-20 border-t border-l sm:border-t-2 sm:border-l-2 rounded-tl-sm",
+        "top-7 right-7 sm:top-9 sm:right-9 md:top-16 md:right-14 lg:top-20 lg:right-20 border-t border-r sm:border-t-2 sm:border-r-2 rounded-tr-sm",
+        "bottom-7 left-7 sm:bottom-9 sm:left-9 md:bottom-16 md:left-14 lg:bottom-20 lg:left-20 border-b border-l sm:border-b-2 sm:border-l-2 rounded-bl-sm",
+        "bottom-7 right-7 sm:bottom-9 sm:right-9 md:bottom-16 md:right-14 lg:bottom-20 lg:right-20 border-b border-r sm:border-b-2 sm:border-r-2 rounded-br-sm",
       ].map((pos, i) => (
         <div
           key={i}
-          className={`absolute ${pos} w-6 h-6 md:w-8 md:h-8 border-primary/30 pointer-events-none transition-opacity duration-700 ease-out`}
+          className={`absolute ${pos} w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 border-primary/25 pointer-events-none transition-opacity duration-700 ease-out`}
           style={{ opacity: loaded ? 1 : 0, transitionDelay: `${1 + i * 0.15}s` }}
         />
       ))}
@@ -135,16 +136,23 @@ const HeroSection = () => {
           style={{ opacity: loaded ? 1 : 0, transform: loaded ? "scaleX(1)" : "scaleX(0)", transitionDelay: "1s" }}
         >
           <div className="h-px w-16 sm:w-24 bg-gradient-to-r from-transparent to-primary/50" />
-          <span className="text-primary text-lg">✦</span>
+          <img
+            src={logo}
+            alt="Longchamp Palace"
+            className="h-12 w-12 sm:h-16 sm:w-16 md:h-20 md:w-20 object-contain invert opacity-90 drop-shadow-[0_6px_18px_rgba(0,0,0,0.45)]"
+            loading="eager"   
+            width={40}
+            height={40}
+          />
           <div className="h-px w-16 sm:w-24 bg-gradient-to-l from-transparent to-primary/50" />
         </div>
 
         {/* Subtitle */}
         <p
-          className="font-elegant text-sm sm:text-base md:text-lg text-foreground/60 tracking-[0.15em] sm:tracking-[0.25em] uppercase mb-4 transition-all duration-1000 ease-out"
+          className="font-elegant text-sm sm:text-base md:text-lg text-foreground/60 tracking-[0.15em] sm:tracking-[0.25em] uppercase mb-2 transition-all duration-1000 ease-out"
           style={{ opacity: loaded ? 1 : 0, transform: loaded ? "translateY(0)" : "translateY(15px)", transitionDelay: "1.1s" }}
         >
-          Restaurant • Cocktails • Terrasse
+          Restaurant • Cocktails • Terrasse • Expositions de tableaux
         </p>
 
         {/* Rating badge */}
@@ -195,7 +203,7 @@ const HeroSection = () => {
       {/* Scroll indicator */}
       <a
         href="#histoire"
-        className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-foreground/30 hover:text-primary/60 transition-colors duration-500 group z-10"
+        className="absolute bottom-6 sm:bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-foreground/30 hover:text-primary/60 transition-colors duration-500 group z-10"
         style={{ opacity: loaded ? 1 : 0, transitionDelay: "2s", transitionDuration: "1s" }}
       >
         <span className="font-elegant text-[10px] sm:text-xs tracking-[0.3em] uppercase opacity-0 group-hover:opacity-100 transition-opacity">
