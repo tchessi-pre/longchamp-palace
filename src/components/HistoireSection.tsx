@@ -1,4 +1,4 @@
-import terrace from "@/assets/terrace.jpg";
+import terrace from "@/assets/terrace.png";
 
 const HistoireSection = () => (
   <section id="histoire" className="py-20 md:py-32 bg-secondary">

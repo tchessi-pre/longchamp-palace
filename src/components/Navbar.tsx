@@ -89,10 +89,10 @@ const Navbar = () => {
           <img
             src={logo}
             alt="Longchamp Palace"
-            className={`transition-all duration-500 rounded-md shadow-[0_10px_30px_rgba(0,0,0,0.25)] ${scrolled ? "h-10 w-10" : "h-10 w-10"
+            className={`transition-all duration-500 rounded-md shadow-[0_10px_30px_rgba(0,0,0,0.25)] ${scrolled ? "h-10 w-10" : "h-8 w-8"
               }`}
           />
-          <span className={`font-limelight transition-all duration-500 hidden sm:inline ${scrolled ? "text-lg md:text-xl" : "text-xl md:text-2xl lg:text-3xl"
+          <span className={`font-limelight transition-all duration-500 hidden sm:inline ${scrolled ? "text-lg md:text-xl" : "text-lg md:text-xl lg:text-xl"
             }`}>
             <span className="text-white">LONGCHAMP</span>{" "}
             <span className="text-primary">PALACE</span>
