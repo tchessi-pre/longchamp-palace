@@ -27,7 +27,7 @@ const AvisSection = () => (
   <section id="avis" className="py-20 md:py-32 chalkboard-bg chalkboard-texture">
     <div className="container mx-auto px-4 relative z-10">
       <div className="text-center mb-16">
-        <span className="font-chalk text-primary text-lg tracking-widest">Ce qu'ils en disent</span>
+        <span className="font-chalk text-primary text-2xl tracking-widest">Ce qu'ils en disent</span>
         <h2 className="font-display text-4xl md:text-5xl text-foreground mt-2">Avis Clients</h2>
         <div className="flex items-center justify-center gap-2 mt-3 mb-2">
           <div className="flex gap-0.5">

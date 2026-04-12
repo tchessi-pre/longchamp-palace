@@ -26,7 +26,7 @@ const HeroSection = () => {
 					style={{ transform: loaded ? 'scale(1.05)' : 'scale(1.15)' }}
 				/>
 				{/* Dark overlay */}
-				<div className='absolute inset-0 bg-background/60' />
+				<div className='absolute inset-0 bg-background/50' />
 				{/* Gradient overlays */}
 				<div className='absolute inset-0 bg-gradient-to-t from-background via-background/30 to-background/20' />
 				<div className='absolute inset-0 bg-gradient-to-b from-background/80 via-transparent to-transparent' />
@@ -138,7 +138,7 @@ const HeroSection = () => {
 					}}
 				>
 					<span
-						className='block text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl drop-shadow-lg'
+						className='block text-4xl sm:text-7xl md:text-7xl lg:text-8xl xl:text-9xl drop-shadow-lg'
 						style={{
 							textShadow: loaded
 								? '0 0 60px hsla(var(--chalk) / 0.15), 0 4px 20px hsla(0 0% 0% / 0.5)'

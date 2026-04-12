@@ -1,10 +1,10 @@
 import terrace from "@/assets/terrace.png";
 
 const HistoireSection = () => (
-  <section id="histoire" className="py-20 md:py-32 bg-secondary">
+  <section id="histoire" className="py-20 md:py-32 bg-background/95 ">
     <div className="container mx-auto px-4">
       <div className="text-center mb-16">
-        <span className="font-chalk text-primary text-lg tracking-widest">Depuis des années</span>
+        <span className="font-chalk text-primary text-2xl tracking-widest">Depuis des années</span>
         <h2 className="font-display text-4xl md:text-5xl text-foreground mt-2">Notre Histoire</h2>
         <div className="section-divider max-w-xs mx-auto" />
       </div>

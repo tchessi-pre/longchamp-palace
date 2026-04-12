@@ -1,10 +1,10 @@
-import { MapPin, Phone, Clock } from "lucide-react";
+import { MapPin, Phone, Clock, Navigation } from "lucide-react";
 
 const InfoSection = () => (
   <section id="contact" className="py-20 md:py-32 bg-secondary">
     <div className="container mx-auto px-4">
       <div className="text-center mb-16">
-        <span className="font-chalk text-primary text-lg tracking-widest">Venez nous voir</span>
+        <span className="font-chalk text-primary text-2xl tracking-widest">Venez nous voir</span>
         <h2 className="font-display text-4xl md:text-5xl text-foreground mt-2">Informations</h2>
         <div className="section-divider max-w-xs mx-auto" />
       </div>
@@ -52,7 +52,7 @@ const InfoSection = () => (
           </a>
         </div>
 
-        <div className="rounded-lg overflow-hidden h-[350px] md:h-full min-h-[350px] border border-border">
+        <div className="relative rounded-lg overflow-hidden h-[350px] md:h-full min-h-[350px] border border-border">
           <iframe
             title="Longchamp Palace - Google Maps"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2903.8!2d5.3915!3d43.3035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12c9c0c7a0a0a0a1%3A0x0!2s22+Bd+Longchamp%2C+13001+Marseille!5e0!3m2!1sfr!2sfr!4v1700000000000!5m2!1sfr!2sfr"
@@ -63,6 +63,15 @@ const InfoSection = () => (
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           />
+          <a
+            href="https://www.google.com/maps/dir/?api=1&destination=22%20Bd%20Longchamp%2C%2013001%20Marseille"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute bottom-4 left-4 right-4 btn-gold text-sm py-2.5 px-5 rounded-full shadow-[0_12px_30px_rgba(0,0,0,0.35)] inline-flex items-center justify-center gap-2"
+          >
+            <Navigation className="w-4 h-4" />
+            Itinéraire
+          </a>
         </div>
       </div>
     </div>

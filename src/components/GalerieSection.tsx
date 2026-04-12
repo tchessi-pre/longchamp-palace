@@ -15,11 +15,15 @@ import ambiance from "@/assets/ambiance.png";
 import dessert from "@/assets/dessert.jpg";
 import interieur from "@/assets/interieur.jpg";
 import vegetarien from "@/assets/végi.jpg";
-import team from "@/assets/equipe.jpg"
+import team from "@/assets/equipe.jpg";
+import painting from "@/assets/painting.jpeg";
+import terraceInterieur from "@/assets/terrace-interieur.jpg"
 
 const images = [
   { src: terrace, alt: "La terrasse", label: "La Terrasse", colSpan: "md:col-span-2", rowSpan: "md:row-span-2" },
+  { src: painting, alt: "Expo de peintures", label: "Expo de peinture", colSpan: "md:col-span-2", rowSpan: "md:row-span-2" },
   { src: interieur, alt: "L'intérieur du bar", label: "L'Intérieur" },
+  { src: terraceInterieur, alt: "La terrasse intérieur", label: "La terrasse intérieur" },
   { src: ambiance, alt: "L'ambiance du bar", label: "L'Ambiance" },
   { src: plat1, alt: "Plat 1", label: "Nos Plats" },
   { src: cocktails, alt: "Les cocktails", label: "Les Cocktails", rowSpan: "md:row-span-2" },
@@ -31,9 +35,9 @@ const images = [
   { src: plat5, alt: "Plat 5", label: "Nos Plats" },
   { src: plat6, alt: "Plat 6", label: "Nos Plats" },
   { src: plat7, alt: "Plat 7", label: "Nos Plats" },
+  { src: team, alt: "L'équipe au complet", label: "L'équipe" },
   { src: plat, alt: "Les plats", label: "Les Plats", colSpan: "md:col-span-2" },
   { src: vegetarien, alt: "Les plats vegetariens", label: "Les Plats Vegetariens", colSpan: "md:col-span-2" },
-  { src: team, alt: "L'équipe au complet", label: "L'équipe", colSpan: "md:col-span-2" },
 ];
 
 const GalerieSection = () => {
@@ -88,10 +92,10 @@ const GalerieSection = () => {
   }, [close, goNext, goPrev, openIndex, scrollToIndex]);
 
   return (
-    <section id="galerie" className="py-20 md:py-32 bg-secondary">
+    <section id="galerie" className="py-20 md:py-32 bg-background/95 ">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="font-chalk text-primary text-lg tracking-widest">Découvrez notre univers</span>
+          <span className="font-chalk text-primary text-2xl tracking-widest">Découvrez notre univers</span>
           <h2 className="font-display text-4xl md:text-5xl text-foreground mt-2">Galerie</h2>
           <div className="section-divider max-w-xs mx-auto" />
         </div>
@@ -140,7 +144,7 @@ const GalerieSection = () => {
             <div className="relative">
               <div
                 ref={scrollerRef}
-                className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth rounded-3xl border border-white/10 bg-black/35 backdrop-blur-md shadow-2xl"
+                className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth rounded-3xl border border-white/10 bg-black/35 backdrop-blur-md shadow-2xl [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
               >
                 {images.map((img, i) => (
                   <div key={`${img.alt}-slide-${i}`} data-slide={i} className="snap-center shrink-0 w-full">

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import logo from "@/assets/logo2.png";
 
@@ -15,6 +15,14 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [activeHref, setActiveHref] = useState<string>("#accueil");
+  const sectionIds = useMemo(
+    () =>
+      navItems
+        .map((item) => item.href)
+        .filter((href) => href.startsWith("#"))
+        .map((href) => href.slice(1)),
+    []
+  );
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -41,32 +49,43 @@ const Navbar = () => {
   }, [open]);
 
   useEffect(() => {
-    const sectionIds = navItems
-      .map((item) => item.href)
-      .filter((href) => href.startsWith("#"))
-      .map((href) => href.slice(1));
-
     const elements = sectionIds
       .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => Boolean(el));
 
     if (elements.length === 0) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => (b.intersectionRatio ?? 0) - (a.intersectionRatio ?? 0))[0];
+    let rafId = 0;
+    const offsetPx = 140;
 
-        if (!visible?.target?.id) return;
-        setActiveHref(`#${visible.target.id}`);
-      },
-      { rootMargin: "-20% 0px -70% 0px", threshold: [0.05, 0.1, 0.2, 0.4, 0.6] }
-    );
+    const updateActive = () => {
+      const y = window.scrollY + offsetPx;
+      const last = elements.reduce<HTMLElement | null>((acc, el) => {
+        if (el.offsetTop <= y) return el;
+        return acc;
+      }, null);
 
-    elements.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
+      const next = `#${(last ?? elements[0]).id}`;
+      setActiveHref((prev) => (prev === next ? prev : next));
+    };
+
+    const onScroll = () => {
+      window.cancelAnimationFrame(rafId);
+      rafId = window.requestAnimationFrame(updateActive);
+    };
+
+    updateActive();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    window.addEventListener("hashchange", updateActive);
+
+    return () => {
+      window.cancelAnimationFrame(rafId);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      window.removeEventListener("hashchange", updateActive);
+    };
+  }, [sectionIds]);
 
   useEffect(() => {
     const onResize = () => {
@@ -78,14 +97,14 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-2 right-0 z-50 transition-all duration-700 ${scrolled
+      className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-700 ${scrolled
         ? "bg-background/95 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.4)] py-2"
         : "bg-transparent py-4"
         }`}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
         {/* Logo */}
-        <a href="#accueil" className="flex items-center gap-3 group">
+        <a href="#accueil" className="flex items-center gap-3 group" onClick={() => setActiveHref("#accueil")}>
           <img
             src={logo}
             alt="Longchamp Palace"
@@ -105,6 +124,7 @@ const Navbar = () => {
             <li key={item.href}>
               <a
                 href={item.href}
+                onClick={() => setActiveHref(item.href)}
                 className={`relative px-4 py-2 transition-colors duration-300 font-elegant text-sm tracking-wider uppercase group ${activeHref === item.href ? "text-primary" : "text-foreground/70 hover:text-primary"
                   }`}
               >
@@ -150,7 +170,10 @@ const Navbar = () => {
               <li key={item.href} style={{ animationDelay: `${i * 0.05}s` }}>
                 <a
                   href={item.href}
-                  onClick={() => setOpen(false)}
+                  onClick={() => {
+                    setActiveHref(item.href);
+                    setOpen(false);
+                  }}
                   className={`block px-6 py-3 hover:bg-primary/5 transition-all font-elegant text-lg tracking-wider rounded-lg ${activeHref === item.href ? "text-primary" : "text-foreground/80 hover:text-primary"
                     }`}
                 >

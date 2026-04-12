@@ -7,7 +7,7 @@ const CuisineSection = () => (
   <section id="cuisine" className="py-20 md:py-32 chalkboard-bg chalkboard-texture">
     <div className="container mx-auto px-4 relative z-10">
       <div className="text-center mb-16">
-        <span className="font-chalk text-primary text-lg tracking-widest">Produits frais & locaux</span>
+        <span className="font-chalk text-primary text-2xl tracking-widest">Produits frais & locaux</span>
         <h2 className="font-display text-4xl md:text-5xl text-foreground mt-2">La Cuisine</h2>
         <div className="section-divider max-w-xs mx-auto" />
       </div>
@@ -43,7 +43,7 @@ const CuisineSection = () => (
         <div className="space-y-10">
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <div className="space-y-6">
-              <span className="font-chalk text-primary text-lg tracking-widest">Cocktails & bonne humeur</span>
+              <span className="font-chalk text-primary text-2xl tracking-widest">Cocktails & bonne humeur</span>
               <h3 className="font-display text-3xl md:text-4xl text-foreground mt-2">Le Bar</h3>
               <p className="font-body text-lg md:text-xl text-foreground/80 leading-relaxed">
                 Le soir, le Longchamp Palace se transforme en lieu de rendez‑vous chaleureux : cocktails,
