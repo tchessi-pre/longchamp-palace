@@ -15,7 +15,7 @@ import ambiance from "@/assets/ambiance.png";
 import dessert from "@/assets/dessert.jpg";
 import interieur from "@/assets/interieur.jpg";
 import vegetarien from "@/assets/végi.jpg";
-import team from "@/assets/equipe.jpg";
+import team from "@/assets/epuipe.png";
 import painting from "@/assets/painting.jpeg";
 import terraceInterieur from "@/assets/terrace-interieur.jpg"
 
@@ -25,6 +25,7 @@ const images = [
   { src: interieur, alt: "L'intérieur du bar", label: "L'Intérieur" },
   { src: terraceInterieur, alt: "La terrasse intérieur", label: "La terrasse intérieur" },
   { src: ambiance, alt: "L'ambiance du bar", label: "L'Ambiance" },
+  { src: team, alt: "L'équipe au complet", label: "L'équipe" },
   { src: plat1, alt: "Plat 1", label: "Nos Plats" },
   { src: cocktails, alt: "Les cocktails", label: "Les Cocktails", rowSpan: "md:row-span-2" },
   { src: patio, alt: "Le Patio", label: "Le Patio" },
@@ -35,7 +36,6 @@ const images = [
   { src: plat5, alt: "Plat 5", label: "Nos Plats" },
   { src: plat6, alt: "Plat 6", label: "Nos Plats" },
   { src: plat7, alt: "Plat 7", label: "Nos Plats" },
-  { src: team, alt: "L'équipe au complet", label: "L'équipe" },
   { src: plat, alt: "Les plats", label: "Les Plats", colSpan: "md:col-span-2" },
   { src: vegetarien, alt: "Les plats vegetariens", label: "Les Plats Vegetariens", colSpan: "md:col-span-2" },
 ];

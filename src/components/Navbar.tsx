@@ -97,12 +97,17 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-700 ${scrolled
-        ? "bg-background/95 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.4)] py-2"
-        : "bg-transparent py-4"
+      className={`fixed top-0 left-0 right-0 z-50 w-full overflow-hidden transition-all duration-700 ${scrolled
+        ? "text-black shadow-[0_4px_30px_rgba(0,0,0,0.4)] py-2"
+        : "text-foreground py-3 lg:py-4"
         }`}
     >
-      <div className="container mx-auto px-4 flex items-center justify-between">
+      <div className="absolute inset-0 bg-background" />
+      <div
+        className={`absolute inset-0 bg-primary transition-transform duration-500 ease-out ${scrolled ? "translate-y-0" : "-translate-y-full"
+          }`}
+      />
+      <div className="relative container mx-auto px-4 flex items-center justify-between">
         {/* Logo */}
         <a href="#accueil" className="flex items-center gap-3 group" onClick={() => setActiveHref("#accueil")}>
           <img
@@ -111,10 +116,12 @@ const Navbar = () => {
             className={`transition-all duration-500 rounded-md shadow-[0_10px_30px_rgba(0,0,0,0.25)] ${scrolled ? "h-10 w-10" : "h-8 w-8"
               }`}
           />
-          <span className={`font-limelight transition-all duration-500 hidden sm:inline ${scrolled ? "text-lg md:text-xl" : "text-lg md:text-xl lg:text-xl"
-            }`}>
-            <span className="text-white">LONGCHAMP</span>{" "}
-            <span className="text-primary">PALACE</span>
+          <span
+            className={`font-limelight transition-all duration-500 inline text-base sm:text-lg md:text-xl ${scrolled ? "sm:text-lg md:text-xl" : "lg:text-xl"
+              }`}
+          >
+            <span className={`${scrolled ? "text-black" : "text-white"}`}>LONGCHAMP</span>{" "}
+            <span className={`${scrolled ? "text-black" : "text-primary"}`}>PALACE</span>
           </span>
         </a>
 
@@ -125,12 +132,18 @@ const Navbar = () => {
               <a
                 href={item.href}
                 onClick={() => setActiveHref(item.href)}
-                className={`relative px-4 py-2 transition-colors duration-300 font-elegant text-sm tracking-wider uppercase group ${activeHref === item.href ? "text-primary" : "text-foreground/70 hover:text-primary"
+                className={`relative px-4 py-2 transition-colors duration-300 font-elegant text-sm tracking-wider uppercase group ${activeHref === item.href
+                  ? scrolled
+                    ? "text-black"
+                    : "text-primary"
+                  : scrolled
+                    ? "text-black/75 hover:text-black"
+                    : "text-foreground/70 hover:text-primary"
                   }`}
               >
                 {item.label}
                 <span
-                  className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-px bg-primary transition-all duration-300 ${activeHref === item.href ? "w-3/4" : "w-0 group-hover:w-3/4"
+                  className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-px transition-all duration-300 ${scrolled ? "bg-black" : "bg-primary"} ${activeHref === item.href ? "w-3/4" : "w-0 group-hover:w-3/4"
                     }`}
                 />
               </a>
@@ -149,49 +162,94 @@ const Navbar = () => {
         {/* Mobile toggle */}
         <button
           onClick={() => setOpen(!open)}
-          className="lg:hidden text-foreground p-2 hover:text-primary transition-colors"
-          aria-label="Menu"
+          className={`lg:hidden p-2 transition-colors ${scrolled ? "text-black hover:text-black/80" : "text-foreground hover:text-primary"
+            }`}
+          aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
           aria-expanded={open}
-          aria-controls="mobile-menu"
+          aria-controls="mobile-nav"
         >
           {open ? <X size={26} /> : <Menu size={26} />}
         </button>
       </div>
 
       {/* Mobile menu */}
-      <div
-        id="mobile-menu"
-        className={`lg:hidden overflow-hidden transition-all duration-500 ease-in-out ${open ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
-          }`}
-      >
-        <div className="bg-background/98 backdrop-blur-xl border-t border-border">
-          <ul className="flex flex-col items-center gap-1 py-6">
-            {navItems.map((item, i) => (
-              <li key={item.href} style={{ animationDelay: `${i * 0.05}s` }}>
-                <a
-                  href={item.href}
-                  onClick={() => {
-                    setActiveHref(item.href);
-                    setOpen(false);
-                  }}
-                  className={`block px-6 py-3 hover:bg-primary/5 transition-all font-elegant text-lg tracking-wider rounded-lg ${activeHref === item.href ? "text-primary" : "text-foreground/80 hover:text-primary"
-                    }`}
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-            <li className="mt-4">
+      <div className={`lg:hidden ${open ? "pointer-events-auto" : "pointer-events-none"}`}>
+        <div
+          className={`fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity duration-300 ${open ? "opacity-100" : "opacity-0"
+            }`}
+          onClick={() => setOpen(false)}
+          aria-hidden={!open}
+        />
+
+        <div
+          id="mobile-nav"
+          className={`fixed top-0 right-0 z-50 h-[100dvh] w-[92vw] max-w-[22rem] bg-background border-l border-border shadow-[0_20px_60px_rgba(0,0,0,0.55)] transition-transform duration-300 ease-out ${open ? "translate-x-0" : "translate-x-full"
+            }`}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menu"
+        >
+          <div className="flex items-center justify-between px-5 py-4 border-b border-border">
+            <div className="flex items-center gap-3">
+              <img
+                src={logo}
+                alt="Longchamp Palace"
+                className="h-9 w-9 rounded-md shadow-[0_10px_30px_rgba(0,0,0,0.25)]"
+              />
+              <div className="leading-none">
+                <div className="font-limelight text-base">
+                  <span className="text-white">LONGCHAMP</span>{" "}
+                  <span className="text-primary">PALACE</span>
+                </div>
+                <div className="font-elegant text-[10px] tracking-[0.35em] uppercase text-foreground/50 mt-1">
+                  Menu
+                </div>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setOpen(false)}
+              className="inline-flex items-center justify-center rounded-full border border-border bg-background/40 hover:bg-background/60 p-2 text-foreground/80 hover:text-primary transition-colors"
+              aria-label="Fermer"
+            >
+              <X size={22} />
+            </button>
+          </div>
+
+          <div className="px-4 py-4 overflow-y-auto h-[calc(100dvh-72px)]">
+            <ul className="flex flex-col gap-2">
+              {navItems.map((item) => (
+                <li key={item.href}>
+                  <a
+                    href={item.href}
+                    onClick={() => {
+                      setActiveHref(item.href);
+                      setOpen(false);
+                    }}
+                    className={`flex items-center justify-between px-4 py-3 rounded-xl transition-all font-elegant text-base tracking-wider ${activeHref === item.href
+                      ? "bg-primary/10 text-primary border border-primary/20"
+                      : "text-foreground/80 hover:text-primary hover:bg-primary/5 border border-transparent"
+                      }`}
+                  >
+                    <span>{item.label}</span>
+                    <span className={`h-2 w-2 rounded-full ${activeHref === item.href ? "bg-primary" : "bg-transparent"}`} />
+                  </a>
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-6">
               <a
                 href="tel:0486972259"
                 onClick={() => setOpen(false)}
-                className="btn-gold text-sm py-2.5 px-8 rounded-full inline-flex items-center gap-2"
+                className="btn-gold w-full text-sm py-3 px-6 rounded-full inline-flex items-center justify-center gap-2"
               >
                 <Phone className="w-4 h-4" />
                 Réserver une table
               </a>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
       </div>
     </nav>
