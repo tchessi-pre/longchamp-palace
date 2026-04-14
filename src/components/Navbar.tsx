@@ -98,7 +98,7 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 w-full overflow-hidden transition-all duration-700 ${scrolled
-        ? "text-black shadow-[0_4px_30px_rgba(0,0,0,0.4)] py-2"
+        ? "text-black shadow-[0_4px_30px_rgba(0,0,0,0.4)] py-4"
         : "text-foreground py-3 lg:py-4"
         }`}
     >
@@ -106,6 +106,19 @@ const Navbar = () => {
       <div
         className={`absolute inset-0 bg-primary transition-transform duration-500 ease-out ${scrolled ? "translate-y-0" : "-translate-y-full"
           }`}
+      />
+      <div
+        className={`absolute left-0 right-0 bottom-0 h-4 transition-all duration-500 ease-out ${scrolled ? "translate-y-0" : "-translate-y-full"
+          }`}
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='20' viewBox='0 0 100 40' preserveAspectRatio='none'%3E%3Cpath d='M0 20 Q12.5 8 25 20 T50 20 T75 20 T100 20 L100 40 L0 40 Z' fill='rgba(0, 0, 0, 0.95)'/%3E%3C/svg%3E")`,
+          backgroundRepeat: "repeat-x",
+          backgroundPosition: "bottom",
+          backgroundSize: "120px 20px",
+          opacity: scrolled ? 1 : 0,
+          transition: "opacity 500ms ease-out, transform 500ms ease-out",
+          filter: "drop-shadow(0 -4px 6px rgba(0,0,0,0.1))",
+        }}
       />
       <div className="relative container mx-auto px-4 flex items-center justify-between">
         {/* Logo */}
@@ -132,13 +145,13 @@ const Navbar = () => {
               <a
                 href={item.href}
                 onClick={() => setActiveHref(item.href)}
-                className={`relative px-4 py-2 transition-colors duration-300 font-elegant text-sm tracking-wider uppercase group ${activeHref === item.href
+                className={`relative px-4 py-2 transition-colors duration-300 font-elegant font-bold text-xs uppercase group ${activeHref === item.href
                   ? scrolled
-                    ? "text-black"
+                    ? "text-black font-bold"
                     : "text-primary"
                   : scrolled
-                    ? "text-black/75 hover:text-black"
-                    : "text-foreground/70 hover:text-primary"
+                    ? "text-black/80 hover:text-black"
+                    : "text-foreground/80 hover:text-primary"
                   }`}
               >
                 {item.label}
@@ -200,9 +213,6 @@ const Navbar = () => {
                 <div className="font-limelight text-base">
                   <span className="text-white">LONGCHAMP</span>{" "}
                   <span className="text-primary">PALACE</span>
-                </div>
-                <div className="font-elegant text-[10px] tracking-[0.35em] uppercase text-foreground/50 mt-1">
-                  Menu
                 </div>
               </div>
             </div>

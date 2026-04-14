@@ -34,16 +34,34 @@ const HeroSection = () => {
 					className='absolute inset-0'
 					style={{
 						background:
-							'radial-gradient(1100px 520px at 50% 34%, hsla(var(--primary) / 0.12) 0%, transparent 0%), radial-gradient(900px 520px at 14% 20%, hsla(var(--chalk) / 0.07) 0%, transparent 55%), radial-gradient(900px 520px at 86% 20%, hsla(var(--chalk) / 0.06) 0%, transparent 55%)',
+							'radial-gradient(1100px 520px at 50% 34%, hsla(var(--primary) / 0.12) 0%, transparent 60%), radial-gradient(900px 520px at 14% 20%, hsla(var(--chalk) / 0.07) 0%, transparent 55%), radial-gradient(900px 520px at 86% 20%, hsla(var(--chalk) / 0.06) 0%, transparent 55%)',
+					}}
+				/>
+				<div
+					className='absolute inset-0 opacity-[0.10] mix-blend-soft-light pointer-events-none'
+					style={{
+						background:
+							'repeating-linear-gradient(to bottom, rgba(255,255,255,0.09) 0px, rgba(255,255,255,0.09) 1px, rgba(0,0,0,0) 1px, rgba(0,0,0,0) 5px)',
+					}}
+				/>
+				<div
+					className='absolute inset-0 opacity-[0.18] pointer-events-none'
+					style={{
+						background:
+							'repeating-linear-gradient(to right, hsla(var(--primary) / 0.16) 0px, hsla(var(--primary) / 0.16) 1px, transparent 1px, transparent 64px), repeating-linear-gradient(to bottom, hsla(var(--primary) / 0.12) 0px, hsla(var(--primary) / 0.12) 1px, transparent 1px, transparent 64px)',
+						maskImage: 'radial-gradient(circle at 50% 40%, black 0%, transparent 68%)',
+						WebkitMaskImage: 'radial-gradient(circle at 50% 40%, black 0%, transparent 68%)',
+					}}
+				/>
+				<div
+					className='absolute inset-0 opacity-[0.06] mix-blend-overlay pointer-events-none'
+					style={{
+						backgroundImage:
+							'radial-gradient(rgba(255,255,255,0.45) 0.6px, transparent 0.6px)',
+						backgroundSize: '3px 3px',
 					}}
 				/>
 			</div>
-
-			{/* Curtain overlay */}
-			{/* <div
-				className='absolute inset-0 bg-background z-30 pointer-events-none transition-opacity [transition-duration:2s] ease-out'
-				style={{ opacity: loaded ? 0 : 1 }}
-			/> */}
 
 			{/* Warm ambient glow */}
 			<div className='absolute inset-0 pointer-events-none overflow-hidden'>
@@ -87,7 +105,7 @@ const HeroSection = () => {
 				}}
 			/>
 			{/* Corner ornaments */}
-			{[
+			{/* {[
 				{
 					pos: 'top-7 left-7 sm:top-9 sm:left-9 md:top-16 md:left-14 lg:top-24 lg:left-24 border-t border-l sm:border-t-2 sm:border-l-8 rounded-tl-3xl',
 					// dot: 'top-0 left-0',
@@ -97,11 +115,11 @@ const HeroSection = () => {
 					// dot: 'top-0 right-0',
 				},
 				{
-					pos: 'bottom-7 left-7 sm:bottom-9 sm:left-9 md:bottom-16 md:left-14 lg:bottom-24 lg:left-24 border-b border-l sm:border-b-2 sm:border-l-8 rounded-bl-3xl',
+					pos: 'bottom-7 left-7 sm:bottom-9 sm:left-9 md:bottom-16 md:left-14 lg:bottom-24 lg:left-24 sm:border-b-2 sm:border-l-8 rounded-bl-3xl',
 					// dot: 'bottom-0 left-0',
 				},
 				{
-					pos: 'bottom-7 right-7 sm:bottom-9 sm:right-9 md:bottom-16 md:right-14 lg:bottom-24 lg:right-24 border-b border-r sm:border-b-8 sm:border-r-2 rounded-br-3xl',
+					pos: 'bottom-7 right-7 sm:bottom-9 sm:right-9 md:bottom-16 md:right-14 lg:bottom-24 lg:right-24  sm:border-b-8 sm:border-r-2 rounded-br-3xl',
 					// dot: 'bottom-0 right-0',
 				},
 			].map(({ pos }, i) => (
@@ -113,29 +131,55 @@ const HeroSection = () => {
 						transform: loaded ? 'scale(1)' : 'scale(0.88)',
 						transitionDelay: `${1 + i * 0.15}s`,
 					}}
-				>
-				</div>
-			))}
+				></div>
+			))} */}
 
 			{/* Content */}
 			<div className='relative z-10 text-center px-4 sm:px-6 w-full max-w-6xl mx-auto'>
 				<div
-					className='mx-auto w-full max-w-5xl rounded-3xl border border-primary/10 bg-#000000ff/20 backdrop-blur-sm shadow-[0_30px_120px_rgba(0, 0, 0, 0.329)] px-5 sm:px-8 md:px-10 py-10 sm:py-12 md:py-14 transition-all duration-1000 ease-out'
+					className=''
 					style={{
 						opacity: loaded ? 1 : 0,
 						transform: loaded ? 'translateY(0)' : 'translateY(24px)',
 						transitionDelay: '0.2s',
 					}}
 				>
+					{/* <div className='absolute inset-0 pointer-events-none rounded-3xl ring-1 ring-primary/20' /> */}
+					{/* <div
+						className='absolute inset-0 pointer-events-none opacity-80'
+						style={{
+							background:
+								'radial-gradient(900px 420px at 50% 0%, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 60%), radial-gradient(900px 520px at 50% 100%, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 55%)',
+						}}
+					/> */}
+					{/* <div
+						className='absolute inset-0 opacity-[0.10] mix-blend-soft-light pointer-events-none'
+						style={{
+							background:
+								'repeating-linear-gradient(to bottom, rgba(255,255,255,0.10) 0px, rgba(255,255,255,0.10) 1px, rgba(0,0,0,0) 1px, rgba(0,0,0,0) 6px)',
+						}}
+					/> */}
+					{/* <div
+						className='absolute -inset-1 pointer-events-none opacity-70'
+						style={{
+							background:
+								'linear-gradient(90deg, transparent 0%, hsla(var(--primary) / 0.22) 30%, transparent 60%), linear-gradient(180deg, transparent 0%, hsla(var(--primary) / 0.16) 40%, transparent 70%)',
+							filter: 'blur(18px)',
+						}}
+					/> */}
+					{/* <div className='absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none opacity-70' /> */}
+
 					<div
-						className='flex items-center justify-center gap-4 my-6 md:my-2 transition-all duration-1000 ease-out'
+						className='mx-auto grid w-full max-w-xl grid-cols-[1fr_auto_1fr] items-center gap-x-3 sm:gap-x-6 my-6 md:my-4 transition-all duration-1000 ease-out'
 						style={{
 							opacity: loaded ? 1 : 0,
-							transform: loaded ? 'scaleX(1)' : 'scaleX(0)',
+							transform: loaded ? 'translateY(0)' : 'translateY(-10px)',
 							transitionDelay: '1s',
 						}}
 					>
-						<div className='h-px w-16 sm:w-24 bg-gradient-to-r from-transparent to-primary/50' />
+						<span className='justify-self-end text-right text-primary font-bold font-elegant text-[10px] sm:text-xs md:text-sm tracking-[0.2em] sm:tracking-[0.3em] uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]'>
+							Restaurant
+						</span>
 						<img
 							src={logo}
 							alt='Longchamp Palace'
@@ -144,7 +188,62 @@ const HeroSection = () => {
 							width={40}
 							height={40}
 						/>
-						<div className='h-px w-16 sm:w-24 bg-gradient-to-l from-transparent to-primary/50' />
+						<span className='justify-self-start text-left text-primary font-bold font-elegant text-[10px] sm:text-xs md:text-sm tracking-[0.2em] sm:tracking-[0.3em] uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]'>
+							Bistrot
+						</span>
+					</div>
+
+					{/* Main title */}
+					<div className='flex justify-center'>
+						<div className='relative mx-auto w-fit max-w-[92vw]'>
+							<h1
+								className='relative font-limelight mb-3 leading-[0.85] tracking-tight transition-all [transition-duration:1.2s] ease-out bg-primary text-black rounded-2xl px-4 sm:px-7 py-3.5 sm:py-5 shadow-[0_22px_70px_rgba(0,0,0,0.35)] mx-auto w-fit max-w-[92vw] text-center border border-primay/15 ring-1 ring-primary/25 overflow-hidden'
+								style={{
+									opacity: loaded ? 1 : 0,
+									transform: loaded
+										? 'translateY(0) scale(1)'
+										: 'translateY(30px) scale(0.95)',
+									transitionDelay: '0.5s',
+								}}
+							>
+								{/* <span
+									aria-hidden
+									className='absolute inset-0 pointer-events-none opacity-60'
+									style={{
+										background:
+											'repeating-linear-gradient(135deg, rgba(0,0,0,0.12) 0px, rgba(0,0,0,0.12) 10px, rgba(255,255,255,0.06) 10px, rgba(255,255,255,0.06) 20px)',
+									}}
+								/>
+								<span
+									aria-hidden
+									className='absolute inset-0 pointer-events-none'
+									style={{
+										background:
+											'radial-gradient(700px 260px at 50% 0%, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 60%)',
+										opacity: 0.7,
+									}}
+								/> */}
+								<span
+									aria-hidden
+									className='absolute inset-y-0 -left-1/2 w-1/2 pointer-events-none opacity-0'
+									style={{
+										background:
+											'linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.38) 50%, rgba(255,255,255,0) 100%)',
+										transform: loaded ? 'translateX(220%) skewX(-18deg)' : 'translateX(40%) skewX(-18deg)',
+										opacity: loaded ? 0.85 : 0,
+										transition: 'transform 1200ms ease-out, opacity 1200ms ease-out',
+										transitionDelay: '0.9s',
+									}}
+								/>
+								<span className='block text-[clamp(2.4rem,9vw,6.25rem)] drop-shadow-[0_10px_25px_rgba(0,0,0,0.25)]'>
+									LONGCHAMP
+								</span>
+								<span className='block mt-1 text-[clamp(2.8rem,10.5vw,7.5rem)] drop-shadow-[0_10px_25px_rgba(0,0,0,0.25)]'>
+									PALACE
+								</span>
+								<span aria-hidden className='block mx-auto mt-3 h-1 w-1/3 bg-black/80' />
+							</h1>
+						</div>
 					</div>
 
 					{/* Tagline */}
@@ -158,81 +257,10 @@ const HeroSection = () => {
 					>
 						<div className='inline-flex items-center gap-3 px-5 py-2 rounded-full border border-primary/20 bg-primary/5 backdrop-blur-md'>
 							<MapPin className='w-3.5 h-3.5 text-primary' />
-							<span className='text-primary font-elegant text-xs md:text-sm tracking-[0.3em] uppercase'>
-								Marseille — Depuis 2015
+							<span className='text-white font-elegant text-xs md:text-sm tracking-[0.3em] uppercase'>
+								Marseille
 							</span>
 						</div>
-					</div>
-
-					{/* Main title */}
-					<h1
-						className='font-limelight mb-3 leading-[0.85] tracking-tight transition-all [transition-duration:1.2s] ease-out inline-block bg-primary text-black rounded-xl px-4 sm:px-6 py-4 sm:py-5 shadow-[0_20px_60px_rgba(0,0,0,0.35)]'
-						style={{
-							opacity: loaded ? 1 : 0,
-							transform: loaded
-								? 'translateY(0) scale(1)'
-								: 'translateY(30px) scale(0.95)',
-							transitionDelay: '0.5s',
-						}}
-					>
-						<span
-							className='block text-[clamp(2.4rem,9vw,6.25rem)] drop-shadow-[0_10px_25px_rgba(0,0,0,0.25)]'
-						>
-							LONGCHAMP
-						</span>
-						<span
-							className='block mt-1 text-[clamp(2.8rem,10.5vw,7.5rem)] drop-shadow-[0_10px_25px_rgba(0,0,0,0.25)]'
-						>
-							PALACE
-						</span>
-					</h1>
-
-					{/* Decorative line */}
-					{/* <div
-						className='flex items-center justify-center gap-4 my-6 md:my-8 transition-all duration-1000 ease-out'
-						style={{
-							opacity: loaded ? 1 : 0,
-							transform: loaded ? 'scaleX(1)' : 'scaleX(0)',
-							transitionDelay: '1s',
-						}}
-					>
-						<div className='h-px w-16 sm:w-24 bg-gradient-to-r from-transparent to-primary/50' />
-						<img
-							src={logo}
-							alt='Longchamp Palace'
-							className='h-12 w-12 sm:h-16 sm:w-16 md:h-20 md:w-20 object-contain invert opacity-90 drop-shadow-[0_6px_18px_rgba(0,0,0,0.45)]'
-							loading='eager'
-							width={40}
-							height={40}
-						/>
-						<div className='h-px w-16 sm:w-24 bg-gradient-to-l from-transparent to-primary/50' />
-					</div> */}
-
-					{/* Subtitle */}
-					<div
-						className='mb-2 flex flex-wrap items-center justify-center gap-2 sm:gap-3 transition-all duration-1000 ease-out'
-						style={{
-							opacity: loaded ? 1 : 0,
-							transform: loaded ? 'translateY(0)' : 'translateY(15px)',
-							transitionDelay: '1.1s',
-						}}
-					>
-						<span className='inline-flex items-center gap-2 rounded-full border border-primary/15 bg-primary/5 px-3 py-1 text-[10px] sm:text-xs md:text-sm font-elegant tracking-[0.22em] uppercase text-foreground/75'>
-							<span className='h-1.5 w-1.5 rounded-full bg-primary/70' />
-							Restaurant
-						</span>
-						<span className='inline-flex items-center gap-2 rounded-full border border-primary/15 bg-primary/5 px-3 py-1 text-[10px] sm:text-xs md:text-sm font-elegant tracking-[0.22em] uppercase text-foreground/75'>
-							<span className='h-1.5 w-1.5 rounded-full bg-primary/70' />
-							Bistrot
-						</span>
-						<span className='inline-flex items-center gap-2 rounded-full border border-primary/15 bg-primary/5 px-3 py-1 text-[10px] sm:text-xs md:text-sm font-elegant tracking-[0.22em] uppercase text-foreground/75'>
-							<span className='h-1.5 w-1.5 rounded-full bg-primary/70' />
-							Terrasse
-						</span>
-						<span className='inline-flex items-center gap-2 rounded-full border border-primary/15 bg-primary/5 px-3 py-1 text-[10px] sm:text-xs md:text-sm font-elegant tracking-[0.22em] uppercase text-foreground/75'>
-							<span className='h-1.5 w-1.5 rounded-full bg-primary/70' />
-							Expositions de tableaux
-						</span>
 					</div>
 
 					{/* Rating badge */}
@@ -257,7 +285,7 @@ const HeroSection = () => {
 								))}
 							</div>
 							<span className='text-foreground/70 font-elegant text-xs tracking-wider'>
-								4,41 / 5 — 622 avis
+								4,41 / 5 - 622 avis
 							</span>
 						</div>
 					</div>
@@ -292,7 +320,9 @@ const HeroSection = () => {
 					>
 						<div className='inline-flex items-center gap-2 text-foreground/30 text-xs sm:text-sm font-elegant tracking-wider'>
 							<Clock className='w-3.5 h-3.5 text-primary/50' />
-							<span>Lun – Jeu · 08h–01h | Ven – Sam · 08h–02h | Dim · 09h–01h</span>
+							<span>
+								Lun – Jeu · 08h–01h | Ven – Sam · 08h–02h | Dim · 09h–01h
+							</span>
 						</div>
 					</div>
 				</div>
