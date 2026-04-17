@@ -202,17 +202,17 @@ const HeroSection = () => {
 					{/* <div className='absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none opacity-70' /> */}
 
 					<div
-						className='mx-auto grid w-full max-w-2xl grid-cols-[1fr_auto_1fr] items-center gap-x-2 sm:gap-x-6 my-6 md:my-5 transition-all duration-1000 ease-out'
+						className='mx-auto grid w-full max-w-2xl grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-x-2 sm:gap-x-6 my-6 md:my-5 transition-all duration-1000 ease-out'
 						style={{
 							opacity: loaded ? 1 : 0,
 							transform: loaded ? 'translateY(0)' : 'translateY(-10px)',
 							transitionDelay: '1s',
 						}}
 					>
-						<div className='justify-self-end flex items-center justify-end gap-2 sm:gap-4'>
+						<div className='min-w-0 justify-self-stretch flex items-center justify-end gap-2 sm:gap-4'>
 							<div className='hidden sm:block h-px w-10 sm:w-16 bg-gradient-to-r from-transparent to-primary/60' />
 							<div className='hidden sm:block h-2.5 w-2.5 rotate-45 border border-primary/50 bg-primary/10' />
-							<span className='rounded-full border border-primary/25 bg-primary/5 px-3 py-1 text-right text-primary font-bold font-elegant text-[9px] sm:text-xs md:text-sm tracking-[0.22em] sm:tracking-[0.32em] uppercase shadow-[0_0_18px_hsla(var(--primary)/0.10)] drop-shadow-[0_2px_10px_rgba(0,0,0,0.55)]'>
+							<span className='min-w-0 rounded-full border border-primary/25 bg-primary/5 px-3 py-1 text-right text-primary font-bold font-elegant text-[9px] sm:text-xs md:text-sm tracking-[0.22em] sm:tracking-[0.32em] uppercase shadow-[0_0_18px_hsla(var(--primary)/0.10)] drop-shadow-[0_2px_10px_rgba(0,0,0,0.55)]'>
 								Restaurant
 							</span>
 						</div>
@@ -238,8 +238,8 @@ const HeroSection = () => {
 							</div>
 						</div>
 
-						<div className='justify-self-start flex items-center justify-start gap-2 sm:gap-4'>
-							<span className='rounded-full border border-primary/25 bg-primary/5 px-3 py-1 text-left text-primary font-bold font-elegant text-[9px] sm:text-xs md:text-sm tracking-[0.22em] sm:tracking-[0.32em] uppercase shadow-[0_0_18px_hsla(var(--primary)/0.10)] drop-shadow-[0_2px_10px_rgba(0,0,0,0.55)]'>
+						<div className='min-w-0 justify-self-stretch flex items-center justify-start gap-2 sm:gap-4'>
+							<span className='min-w-0 rounded-full border border-primary/25 bg-primary/5 px-3 py-1 text-left text-primary font-bold font-elegant text-[9px] sm:text-xs md:text-sm tracking-[0.22em] sm:tracking-[0.32em] uppercase shadow-[0_0_18px_hsla(var(--primary)/0.10)] drop-shadow-[0_2px_10px_rgba(0,0,0,0.55)]'>
 								Bistrot
 							</span>
 							<div className='hidden sm:block h-2.5 w-2.5 rotate-45 border border-primary/50 bg-primary/10' />
@@ -369,7 +369,7 @@ const HeroSection = () => {
 
 					{/* Rating badge */}
 					<div
-						className='flex items-center justify-center gap-2 mb-10 sm:mb-12 transition-all duration-1000 ease-out'
+						className='flex items-center justify-center gap-2 mb-6 sm:mb-8 transition-all duration-1000 ease-out'
 						style={{
 							opacity: loaded ? 1 : 0,
 							transform: loaded ? 'translateY(0)' : 'translateY(10px)',
@@ -436,14 +436,14 @@ const HeroSection = () => {
 			{/* Scroll indicator */}
 			<a
 				href='#histoire'
-				className='absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-foreground/30 hover:text-primary/60 transition-colors duration-500 group z-10'
+				className='absolute bottom-3 sm:bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-foreground/30 hover:text-primary/60 transition-colors duration-500 group z-10'
 				style={{
 					opacity: loaded ? 1 : 0,
 					transitionDelay: '2s',
 					transitionDuration: '1s',
 				}}
 			>
-				<span className='hidden sm:block font-elegant text-[10px] sm:text-xs tracking-[0.3em] uppercase text-foreground/40 group-hover:text-foreground/70 opacity-100 transition-colors'>
+				<span className='hidden sm:block font-elegant text-[10px] sm:text-xs tracking-[0.3em] uppercase text-foreground/40 group-hover:text-foreground/70 opacity-0 group-hover:opacity-100 transition-[opacity,color]'>
 					Découvrir
 				</span>
 				<ChevronDown className='w-5 h-5 animate-bounce' />
