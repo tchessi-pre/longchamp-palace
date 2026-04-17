@@ -49,8 +49,10 @@ const HeroSection = () => {
 					style={{
 						background:
 							'repeating-linear-gradient(to right, hsla(var(--primary) / 0.16) 0px, hsla(var(--primary) / 0.16) 1px, transparent 1px, transparent 64px), repeating-linear-gradient(to bottom, hsla(var(--primary) / 0.12) 0px, hsla(var(--primary) / 0.12) 1px, transparent 1px, transparent 64px)',
-						maskImage: 'radial-gradient(circle at 50% 40%, black 0%, transparent 68%)',
-						WebkitMaskImage: 'radial-gradient(circle at 50% 40%, black 0%, transparent 68%)',
+						maskImage:
+							'radial-gradient(circle at 50% 40%, black 0%, transparent 68%)',
+						WebkitMaskImage:
+							'radial-gradient(circle at 50% 40%, black 0%, transparent 68%)',
 					}}
 				/>
 				<div
@@ -105,7 +107,7 @@ const HeroSection = () => {
 				}}
 			/>
 			{/* Corner ornaments */}
-			{/* {[
+			{[
 				{
 					pos: 'top-7 left-7 sm:top-9 sm:left-9 md:top-16 md:left-14 lg:top-24 lg:left-24 border-t border-l sm:border-t-2 sm:border-l-8 rounded-tl-3xl',
 					// dot: 'top-0 left-0',
@@ -132,7 +134,7 @@ const HeroSection = () => {
 						transitionDelay: `${1 + i * 0.15}s`,
 					}}
 				></div>
-			))} */}
+			))}
 
 			{/* Content */}
 			<div className='relative z-10 text-center px-4 sm:px-6 w-full max-w-6xl mx-auto'>
@@ -170,34 +172,56 @@ const HeroSection = () => {
 					{/* <div className='absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none opacity-70' /> */}
 
 					<div
-						className='mx-auto grid w-full max-w-xl grid-cols-[1fr_auto_1fr] items-center gap-x-3 sm:gap-x-6 my-6 md:my-4 transition-all duration-1000 ease-out'
+						className='mx-auto grid w-full max-w-2xl grid-cols-[1fr_auto_1fr] items-center gap-x-2 sm:gap-x-6 my-6 md:my-5 transition-all duration-1000 ease-out'
 						style={{
 							opacity: loaded ? 1 : 0,
 							transform: loaded ? 'translateY(0)' : 'translateY(-10px)',
 							transitionDelay: '1s',
 						}}
 					>
-						<span className='justify-self-end text-right text-primary font-bold font-elegant text-[10px] sm:text-xs md:text-sm tracking-[0.2em] sm:tracking-[0.3em] uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]'>
-							Restaurant
-						</span>
-						<img
-							src={logo}
-							alt='Longchamp Palace'
-							className='h-12 w-12 sm:h-16 sm:w-16 md:h-20 md:w-20 object-contain invert opacity-90 drop-shadow-[0_6px_18px_rgba(0,0,0,0.45)]'
-							loading='eager'
-							width={40}
-							height={40}
-						/>
-						<span className='justify-self-start text-left text-primary font-bold font-elegant text-[10px] sm:text-xs md:text-sm tracking-[0.2em] sm:tracking-[0.3em] uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]'>
-							Bistrot
-						</span>
+						<div className='justify-self-end flex items-center justify-end gap-2 sm:gap-4'>
+							<div className='hidden sm:block h-px w-10 sm:w-16 bg-gradient-to-r from-transparent to-primary/60' />
+							<div className='hidden sm:block h-2.5 w-2.5 rotate-45 border border-primary/50 bg-primary/10' />
+							<span className='rounded-full border border-primary/25 bg-primary/5 px-3 py-1 text-right text-primary font-bold font-elegant text-[9px] sm:text-xs md:text-sm tracking-[0.22em] sm:tracking-[0.32em] uppercase shadow-[0_0_18px_hsla(var(--primary)/0.10)] drop-shadow-[0_2px_10px_rgba(0,0,0,0.55)]'>
+								Restaurant
+							</span>
+						</div>
+
+						<div className='relative justify-self-center'>
+							<div
+								aria-hidden
+								className='absolute -inset-4 rounded-3xl blur-2xl opacity-80'
+								style={{
+									background:
+										'radial-gradient(circle, hsla(var(--primary) / 0.22) 0%, rgba(0,0,0,0) 70%)',
+								}}
+							/>
+							<div className='relative rounded-2xl border border-primary/20 bg-black/10 p-2 shadow-[0_18px_60px_rgba(0,0,0,0.35)]'>
+								<img
+									src={logo}
+									alt='Longchamp Palace'
+									className='h-12 w-12 sm:h-16 sm:w-16 md:h-20 md:w-20 object-contain invert opacity-90 drop-shadow-[0_6px_18px_rgba(0,0,0,0.45)]'
+									loading='eager'
+									width={40}
+									height={40}
+								/>
+							</div>
+						</div>
+
+						<div className='justify-self-start flex items-center justify-start gap-2 sm:gap-4'>
+							<span className='rounded-full border border-primary/25 bg-primary/5 px-3 py-1 text-left text-primary font-bold font-elegant text-[9px] sm:text-xs md:text-sm tracking-[0.22em] sm:tracking-[0.32em] uppercase shadow-[0_0_18px_hsla(var(--primary)/0.10)] drop-shadow-[0_2px_10px_rgba(0,0,0,0.55)]'>
+								Bistrot
+							</span>
+							<div className='hidden sm:block h-2.5 w-2.5 rotate-45 border border-primary/50 bg-primary/10' />
+							<div className='hidden sm:block h-px w-10 sm:w-16 bg-gradient-to-l from-transparent to-primary/60' />
+						</div>
 					</div>
 
 					{/* Main title */}
 					<div className='flex justify-center'>
 						<div className='relative mx-auto w-fit max-w-[92vw]'>
 							<h1
-								className='relative font-limelight mb-3 leading-[0.85] tracking-tight transition-all [transition-duration:1.2s] ease-out bg-primary text-black rounded-2xl px-4 sm:px-7 py-3.5 sm:py-5 shadow-[0_22px_70px_rgba(0,0,0,0.35)] mx-auto w-fit max-w-[92vw] text-center border border-primay/15 ring-1 ring-primary/25 overflow-hidden'
+								className='relative font-limelight mb-4 leading-[0.82] tracking-[0.02em] transition-all [transition-duration:1.2s] ease-out bg-primary text-black rounded-lg px-5 sm:px-10 py-5 sm:py-7 shadow-[0_26px_90px_rgba(0,0,0,0.45)] mx-auto w-fit max-w-[92vw] text-center border border-black/20 ring-1 ring-black/15 overflow-hidden'
 								style={{
 									opacity: loaded ? 1 : 0,
 									transform: loaded
@@ -206,6 +230,46 @@ const HeroSection = () => {
 									transitionDelay: '0.5s',
 								}}
 							>
+								<span
+									aria-hidden
+									className='absolute inset-0 pointer-events-none opacity-90'
+									style={{
+										background:
+											'linear-gradient(180deg, rgba(255,255,255,0.42) 0%, rgba(255,255,255,0.12) 28%, rgba(0,0,0,0.10) 100%)',
+									}}
+								/>
+								<span
+									aria-hidden
+									className='absolute inset-0 pointer-events-none opacity-40'
+									style={{
+										background:
+											'repeating-linear-gradient(90deg, rgba(0,0,0,0.10) 0px, rgba(0,0,0,0.10) 1px, rgba(0,0,0,0) 1px, rgba(0,0,0,0) 14px)',
+									}}
+								/>
+								<span
+									aria-hidden
+									className='absolute inset-3 pointer-events-none border border-black/40'
+								/>
+								<span
+									aria-hidden
+									className='absolute inset-5 pointer-events-none border border-black/20'
+								/>
+								<span
+									aria-hidden
+									className='absolute left-3 top-3 h-2 w-2 rotate-45 bg-black/70'
+								/>
+								<span
+									aria-hidden
+									className='absolute right-3 top-3 h-2 w-2 rotate-45 bg-black/70'
+								/>
+								<span
+									aria-hidden
+									className='absolute left-3 bottom-3 h-2 w-2 rotate-45 bg-black/70'
+								/>
+								<span
+									aria-hidden
+									className='absolute right-3 bottom-3 h-2 w-2 rotate-45 bg-black/70'
+								/>
 								{/* <span
 									aria-hidden
 									className='absolute inset-0 pointer-events-none opacity-60'
@@ -229,19 +293,29 @@ const HeroSection = () => {
 									style={{
 										background:
 											'linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.38) 50%, rgba(255,255,255,0) 100%)',
-										transform: loaded ? 'translateX(220%) skewX(-18deg)' : 'translateX(40%) skewX(-18deg)',
-										opacity: loaded ? 0.85 : 0,
-										transition: 'transform 1200ms ease-out, opacity 1200ms ease-out',
-										transitionDelay: '0.9s',
+										transform: loaded
+											? 'translateX(220%) skewX(-18deg)'
+											: 'translateX(40%) skewX(-18deg)',
+										opacity: loaded ? 0.6 : 0,
+										transition:
+											'transform 1200ms ease-out, opacity 1200ms ease-out',
+										transitionDelay: '1.05s',
 									}}
 								/>
-								<span className='block text-[clamp(2.4rem,9vw,6.25rem)] drop-shadow-[0_10px_25px_rgba(0,0,0,0.25)]'>
+								<span className='block text-[clamp(2.4rem,9vw,6.25rem)] tracking-[0.14em] drop-shadow-[0_10px_25px_rgba(0,0,0,0.25)]'>
 									LONGCHAMP
 								</span>
-								<span className='block mt-1 text-[clamp(2.8rem,10.5vw,7.5rem)] drop-shadow-[0_10px_25px_rgba(0,0,0,0.25)]'>
+								<span className='block mt-1 text-[clamp(2.8rem,10.5vw,7.5rem)] tracking-[0.18em] drop-shadow-[0_10px_25px_rgba(0,0,0,0.25)]'>
 									PALACE
 								</span>
-								<span aria-hidden className='block mx-auto mt-3 h-1 w-1/3 bg-black/80' />
+								<div
+									aria-hidden
+									className='mx-auto mt-4 flex w-2/3 max-w-[22rem] items-center gap-3'
+								>
+									<div className='h-px flex-1 bg-black/70' />
+									<div className='h-2.5 w-2.5 rotate-45 border border-black/80 bg-black/10' />
+									<div className='h-px flex-1 bg-black/70' />
+								</div>
 							</h1>
 						</div>
 					</div>
@@ -277,10 +351,11 @@ const HeroSection = () => {
 								{[...Array(5)].map((_, i) => (
 									<Star
 										key={i}
-										className={`w-3 h-3 ${i < 4
-											? 'text-primary fill-primary'
-											: 'text-primary/40 fill-primary/40'
-											}`}
+										className={`w-3 h-3 ${
+											i < 4
+												? 'text-primary fill-primary'
+												: 'text-primary/40 fill-primary/40'
+										}`}
 									/>
 								))}
 							</div>

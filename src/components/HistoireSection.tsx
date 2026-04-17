@@ -1,13 +1,10 @@
 import terrace from "@/assets/terrace.png";
+import SectionHeader from "@/components/SectionHeader";
 
 const HistoireSection = () => (
   <section id="histoire" className="py-20 md:py-32 bg-background/95 ">
     <div className="container mx-auto px-4">
-      <div className="text-center mb-16">
-        <span className="font-chalk text-primary text-2xl tracking-widest">Depuis des années</span>
-        <h2 className="font-display text-4xl md:text-5xl text-foreground mt-2">Notre Histoire</h2>
-        <div className="section-divider max-w-xs mx-auto" />
-      </div>
+      <SectionHeader kicker="Depuis des années" title="Notre Histoire" />
 
       <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center max-w-6xl mx-auto">
         <div className="space-y-6">

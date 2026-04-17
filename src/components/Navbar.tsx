@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import logo from "@/assets/logo2.png";
 
@@ -12,6 +12,7 @@ const navItems = [
 ];
 
 const Navbar = () => {
+  const navRef = useRef<HTMLElement | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [activeHref, setActiveHref] = useState<string>("#accueil");
@@ -49,23 +50,37 @@ const Navbar = () => {
   }, [open]);
 
   useEffect(() => {
-    const elements = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter((el): el is HTMLElement => Boolean(el));
-
-    if (elements.length === 0) return;
-
     let rafId = 0;
-    const offsetPx = 140;
 
     const updateActive = () => {
-      const y = window.scrollY + offsetPx;
-      const last = elements.reduce<HTMLElement | null>((acc, el) => {
-        if (el.offsetTop <= y) return el;
-        return acc;
-      }, null);
+      const elements = sectionIds
+        .map((id) => document.getElementById(id))
+        .filter((el): el is HTMLElement => Boolean(el));
 
-      const next = `#${(last ?? elements[0]).id}`;
+      if (elements.length === 0) return;
+
+      const navHeight = navRef.current?.getBoundingClientRect().height ?? 0;
+      const threshold = navHeight + 24;
+
+      const isAtBottom =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 2;
+
+      if (isAtBottom) {
+        const last = elements[elements.length - 1];
+        const next = `#${last.id}`;
+        setActiveHref((prev) => (prev === next ? prev : next));
+        return;
+      }
+
+      let current = elements[0];
+      for (const el of elements) {
+        const top = el.getBoundingClientRect().top;
+        if (top <= threshold) current = el;
+        else break;
+      }
+
+      const next = `#${current.id}`;
       setActiveHref((prev) => (prev === next ? prev : next));
     };
 
@@ -97,6 +112,7 @@ const Navbar = () => {
 
   return (
     <nav
+      ref={navRef}
       className={`fixed top-0 left-0 right-0 z-50 w-full overflow-hidden transition-all duration-700 ${scrolled
         ? "text-black shadow-[0_4px_30px_rgba(0,0,0,0.4)] py-4"
         : "text-foreground py-3 lg:py-4"
@@ -156,9 +172,13 @@ const Navbar = () => {
               >
                 {item.label}
                 <span
-                  className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-px transition-all duration-300 ${scrolled ? "bg-black" : "bg-primary"} ${activeHref === item.href ? "w-3/4" : "w-0 group-hover:w-3/4"
+                  className={`absolute bottom-0 left-1/2 -translate-x-1/2 flex w-3/4 items-center gap-2 transition-transform duration-300 origin-center ${activeHref === item.href ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
                     }`}
-                />
+                >
+                  <span className={`h-px flex-1 ${scrolled ? "bg-black/70" : "bg-primary/60"}`} />
+                  <span className={`h-2 w-2 rotate-45 border ${scrolled ? "border-black/70 bg-black/10" : "border-primary/70 bg-primary/10"}`} />
+                  <span className={`h-px flex-1 ${scrolled ? "bg-black/70" : "bg-primary/60"}`} />
+                </span>
               </a>
             </li>
           ))}

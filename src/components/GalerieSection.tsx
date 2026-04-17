@@ -18,6 +18,7 @@ import vegetarien from "@/assets/végi.jpg";
 import team from "@/assets/epuipe.png";
 import painting from "@/assets/painting.jpeg";
 import terraceInterieur from "@/assets/terrace-interieur.jpg"
+import SectionHeader from "@/components/SectionHeader";
 
 const images = [
   { src: terrace, alt: "La terrasse", label: "La Terrasse", colSpan: "md:col-span-2", rowSpan: "md:row-span-2" },
@@ -94,11 +95,7 @@ const GalerieSection = () => {
   return (
     <section id="galerie" className="py-20 md:py-32 bg-background/95 ">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <span className="font-chalk text-primary text-2xl tracking-widest">Découvrez notre univers</span>
-          <h2 className="font-display text-4xl md:text-5xl text-foreground mt-2">Galerie</h2>
-          <div className="section-divider max-w-xs mx-auto" />
-        </div>
+        <SectionHeader kicker="Découvrez notre univers" title="Galerie" />
 
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 auto-rows-[200px] gap-4 max-w-7xl mx-auto">
           {images.map((img, i) => (

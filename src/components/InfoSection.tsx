@@ -1,13 +1,10 @@
 import { MapPin, Phone, Clock, Navigation } from "lucide-react";
+import SectionHeader from "@/components/SectionHeader";
 
 const InfoSection = () => (
   <section id="contact" className="py-20 md:py-32 bg-secondary">
     <div className="container mx-auto px-4">
-      <div className="text-center mb-16">
-        <span className="font-chalk text-primary text-2xl tracking-widest">Venez nous voir</span>
-        <h2 className="font-display text-4xl md:text-5xl text-foreground mt-2">Informations</h2>
-        <div className="section-divider max-w-xs mx-auto" />
-      </div>
+      <SectionHeader kicker="Venez nous voir" title="Informations" />
 
       <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
         <div className="space-y-8">

@@ -1,4 +1,5 @@
 import { Star } from "./ChalkIllustrations";
+import SectionHeader from "@/components/SectionHeader";
 
 const reviews = [
   {
@@ -26,20 +27,21 @@ const reviews = [
 const AvisSection = () => (
   <section id="avis" className="py-20 md:py-32 chalkboard-bg chalkboard-texture">
     <div className="container mx-auto px-4 relative z-10">
-      <div className="text-center mb-16">
-        <span className="font-chalk text-primary text-2xl tracking-widest">Ce qu'ils en disent</span>
-        <h2 className="font-display text-4xl md:text-5xl text-foreground mt-2">Avis Clients</h2>
-        <div className="flex items-center justify-center gap-2 mt-3 mb-2">
-          <div className="flex gap-0.5">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <Star key={i} className={`w-5 h-5 ${i < 4 ? 'text-primary' : 'text-primary/40'}`} />
-            ))}
+      <SectionHeader
+        kicker="Ce qu'ils en disent"
+        title="Avis Clients"
+        afterTitle={
+          <div className="flex items-center justify-center gap-2 -mt-1">
+            <div className="flex gap-0.5">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Star key={i} className={`w-5 h-5 ${i < 4 ? "text-primary" : "text-primary/40"}`} />
+              ))}
+            </div>
+            <span className="font-display text-foreground text-xl">4,41</span>
+            <span className="font-body text-foreground/50 text-sm">/ 5 — 622 avis</span>
           </div>
-          <span className="font-display text-foreground text-xl">4,41</span>
-          <span className="font-body text-foreground/50 text-sm">/ 5 — 622 avis</span>
-        </div>
-        <div className="section-divider max-w-xs mx-auto" />
-      </div>
+        }
+      />
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
         {reviews.map((r) => (
