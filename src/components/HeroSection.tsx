@@ -15,7 +15,7 @@ const HeroSection = () => {
 	return (
 		<section
 			id='accueil'
-			className='relative min-h-screen flex items-center justify-center overflow-hidden pt-12 md:pt-0'
+			className='relative min-h-screen flex items-center justify-center overflow-hidden isolate pt-12 md:pt-0'
 		>
 			{/* Background image */}
 			<div className='absolute inset-0'>
@@ -23,7 +23,12 @@ const HeroSection = () => {
 					src={interiorImg}
 					alt='Intérieur Longchamp Palace'
 					className='w-full h-full object-cover transition-transform [transition-duration:8s] ease-out'
-					style={{ transform: loaded ? 'scale(1.05)' : 'scale(1.15)' }}
+					style={{
+						transform: loaded ? 'scale(1.05)' : 'scale(1.15)',
+						willChange: 'transform',
+						backfaceVisibility: 'hidden',
+						WebkitBackfaceVisibility: 'hidden',
+					}}
 				/>
 				{/* Dark overlay */}
 				<div className='absolute inset-0 bg-background/50' />
@@ -38,14 +43,14 @@ const HeroSection = () => {
 					}}
 				/>
 				<div
-					className='absolute inset-0 opacity-[0.10] mix-blend-soft-light pointer-events-none'
+					className='hidden md:block absolute inset-0 opacity-[0.10] mix-blend-soft-light pointer-events-none'
 					style={{
 						background:
 							'repeating-linear-gradient(to bottom, rgba(255,255,255,0.09) 0px, rgba(255,255,255,0.09) 1px, rgba(0,0,0,0) 1px, rgba(0,0,0,0) 5px)',
 					}}
 				/>
 				<div
-					className='absolute inset-0 opacity-[0.18] pointer-events-none'
+					className='hidden md:block absolute inset-0 opacity-[0.18] pointer-events-none'
 					style={{
 						background:
 							'repeating-linear-gradient(to right, hsla(var(--primary) / 0.16) 0px, hsla(var(--primary) / 0.16) 1px, transparent 1px, transparent 64px), repeating-linear-gradient(to bottom, hsla(var(--primary) / 0.12) 0px, hsla(var(--primary) / 0.12) 1px, transparent 1px, transparent 64px)',
@@ -56,7 +61,7 @@ const HeroSection = () => {
 					}}
 				/>
 				<div
-					className='absolute inset-0 opacity-[0.06] mix-blend-overlay pointer-events-none'
+					className='hidden md:block absolute inset-0 opacity-[0.06] mix-blend-overlay pointer-events-none'
 					style={{
 						backgroundImage:
 							'radial-gradient(rgba(255,255,255,0.45) 0.6px, transparent 0.6px)',
@@ -70,9 +75,12 @@ const HeroSection = () => {
 				<div
 					className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full blur-[180px] transition-all [transition-duration:3s] ease-out'
 					style={{
-						width: loaded ? 800 : 0,
-						height: loaded ? 600 : 0,
+						width: 800,
+						height: 600,
 						opacity: loaded ? 1 : 0,
+						transform: loaded
+							? 'translate(-50%, -50%) scale(1)'
+							: 'translate(-50%, -50%) scale(0.65)',
 						background:
 							'radial-gradient(circle, hsla(var(--primary) / 0.15) 0%, transparent 70%)',
 					}}
@@ -351,11 +359,10 @@ const HeroSection = () => {
 								{[...Array(5)].map((_, i) => (
 									<Star
 										key={i}
-										className={`w-3 h-3 ${
-											i < 4
+										className={`w-3 h-3 ${i < 4
 												? 'text-primary fill-primary'
 												: 'text-primary/40 fill-primary/40'
-										}`}
+											}`}
 									/>
 								))}
 							</div>
