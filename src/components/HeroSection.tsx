@@ -114,35 +114,57 @@ const HeroSection = () => {
 					animationDelay: '4s',
 				}}
 			/>
-			{/* Corner ornaments */}
 			{[
 				{
-					pos: 'top-7 left-7 sm:top-9 sm:left-9 md:top-16 md:left-14 lg:top-24 lg:left-24 border-t border-l sm:border-t-2 sm:border-l-8 rounded-tl-3xl',
-					// dot: 'top-0 left-0',
+					anchor: 'tl',
+					pos: 'top-20 left-5 sm:top-10 sm:left-9 md:top-16 md:left-14 lg:top-24 lg:left-24',
 				},
 				{
-					pos: 'top-7 right-7 sm:top-9 sm:right-9 md:top-16 md:right-14 lg:top-24 lg:right-24 border-t border-r sm:border-t-2 sm:border-r-8 rounded-tr-3xl',
-					// dot: 'top-0 right-0',
+					anchor: 'tr',
+					pos: 'top-20 right-5 sm:top-10 sm:right-9 md:top-16 md:right-14 lg:top-24 lg:right-24',
 				},
 				{
-					pos: 'bottom-7 left-7 sm:bottom-9 sm:left-9 md:bottom-16 md:left-14 lg:bottom-24 lg:left-24 sm:border-b-2 sm:border-l-8 rounded-bl-3xl',
-					// dot: 'bottom-0 left-0',
+					anchor: 'bl',
+					pos: 'bottom-7 left-7 sm:bottom-9 sm:left-9 md:bottom-16 md:left-14 lg:bottom-24 lg:left-24',
 				},
 				{
-					pos: 'bottom-7 right-7 sm:bottom-9 sm:right-9 md:bottom-16 md:right-14 lg:bottom-24 lg:right-24  sm:border-b-8 sm:border-r-2 rounded-br-3xl',
-					// dot: 'bottom-0 right-0',
+					anchor: 'br',
+					pos: 'bottom-7 right-7 sm:bottom-9 sm:right-9 md:bottom-16 md:right-14 lg:bottom-24 lg:right-24',
 				},
-			].map(({ pos }, i) => (
-				<div
-					key={i}
-					className={`absolute ${pos} w-6 h-6 sm:w-7 sm:h-7 md:w-9 md:h-9 border-primary/30 pointer-events-none transition-[opacity,transform] duration-700 ease-out drop-shadow-[0_10px_28px_hsla(var(--primary)/0.18)]`}
-					style={{
-						opacity: loaded ? 1 : 0,
-						transform: loaded ? 'scale(1)' : 'scale(0.88)',
-						transitionDelay: `${1 + i * 0.15}s`,
-					}}
-				></div>
-			))}
+			].map(({ pos, anchor }, i) => {
+				const isTop = anchor === 'tl' || anchor === 'tr';
+				const isLeft = anchor === 'tl' || anchor === 'bl';
+
+				return (
+					<div
+						key={anchor}
+						className={`absolute ${pos} z-20 pointer-events-none transition-[opacity,transform] duration-700 ease-out`}
+						style={{
+							opacity: loaded ? 1 : 0,
+							transform: loaded ? 'scale(1)' : 'scale(0.92)',
+							transitionDelay: `${1 + i * 0.15}s`,
+						}}
+					>
+						<div className='relative w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16'>
+							<div
+								className={`absolute ${isTop ? 'top-0' : 'bottom-0'} left-0 h-px w-9 sm:w-12 md:w-14 bg-primary/45`}
+							/>
+							<div
+								className={`absolute ${isLeft ? 'left-0' : 'right-0'} top-0 w-px h-9 sm:h-12 md:h-14 bg-primary/45`}
+							/>
+							<div
+								className={`absolute ${isTop ? 'top-1' : 'bottom-1'} left-1 h-px w-6 sm:w-9 md:w-10 bg-primary/20`}
+							/>
+							<div
+								className={`absolute ${isLeft ? 'left-1' : 'right-1'} top-1 w-px h-6 sm:h-9 md:h-10 bg-primary/20`}
+							/>
+							<div
+								className={`absolute ${isTop ? 'top-[-1px]' : 'bottom-[-1px]'} ${isLeft ? 'left-[-1px]' : 'right-[-1px]'} h-2.5 w-2.5 sm:h-3 sm:w-3 rotate-45 border border-primary/50 bg-primary/10 shadow-[0_0_18px_hsla(var(--primary)/0.20)]`}
+							/>
+						</div>
+					</div>
+				);
+			})}
 
 			{/* Content */}
 			<div className='relative z-10 text-center px-4 sm:px-6 w-full max-w-6xl mx-auto'>
@@ -227,9 +249,9 @@ const HeroSection = () => {
 
 					{/* Main title */}
 					<div className='flex justify-center'>
-						<div className='relative mx-auto w-fit max-w-[92vw]'>
+						<div className='relative mx-auto w-fit max-w-[96vw]'>
 							<h1
-								className='relative font-limelight mb-4 leading-[0.82] tracking-[0.02em] transition-all [transition-duration:1.2s] ease-out bg-primary text-black rounded-lg px-5 sm:px-10 py-5 sm:py-7 shadow-[0_26px_90px_rgba(0,0,0,0.45)] mx-auto w-fit max-w-[92vw] text-center border border-black/20 ring-1 ring-black/15 overflow-hidden'
+								className='relative font-limelight mb-4 leading-[0.82] tracking-[0.02em] transition-all [transition-duration:1.2s] ease-out bg-primary text-black rounded-lg px-4 sm:px-10 py-5 sm:py-7 shadow-[0_26px_90px_rgba(0,0,0,0.45)] mx-auto w-fit max-w-[96vw] text-center border border-black/20 ring-1 ring-black/15 overflow-hidden'
 								style={{
 									opacity: loaded ? 1 : 0,
 									transform: loaded
@@ -258,25 +280,25 @@ const HeroSection = () => {
 									aria-hidden
 									className='absolute inset-3 pointer-events-none border border-black/40'
 								/>
-								<span
+								{/* <span
 									aria-hidden
 									className='absolute inset-5 pointer-events-none border border-black/20'
+								/> */}
+								<span
+									aria-hidden
+									className='absolute left-2 top-2 h-2 w-2 rotate-45 bg-black/70'
 								/>
 								<span
 									aria-hidden
-									className='absolute left-3 top-3 h-2 w-2 rotate-45 bg-black/70'
+									className='absolute right-2 top-2 h-2 w-2 rotate-45 bg-black/70'
 								/>
 								<span
 									aria-hidden
-									className='absolute right-3 top-3 h-2 w-2 rotate-45 bg-black/70'
+									className='absolute left-2 bottom-2 h-2 w-2 rotate-45 bg-black/70'
 								/>
 								<span
 									aria-hidden
-									className='absolute left-3 bottom-3 h-2 w-2 rotate-45 bg-black/70'
-								/>
-								<span
-									aria-hidden
-									className='absolute right-3 bottom-3 h-2 w-2 rotate-45 bg-black/70'
+									className='absolute right-2 bottom-2 h-2 w-2 rotate-45 bg-black/70'
 								/>
 								{/* <span
 									aria-hidden
@@ -310,15 +332,15 @@ const HeroSection = () => {
 										transitionDelay: '1.05s',
 									}}
 								/>
-								<span className='block text-[clamp(2.4rem,9vw,6.25rem)] tracking-[0.14em] drop-shadow-[0_10px_25px_rgba(0,0,0,0.25)]'>
+								<span className='block text-[clamp(2.4rem,9vw,6.25rem)] tracking-[0.08em] sm:tracking-[0.14em] drop-shadow-[0_10px_25px_rgba(0,0,0,0.25)]'>
 									LONGCHAMP
 								</span>
-								<span className='block mt-1 text-[clamp(2.8rem,10.5vw,7.5rem)] tracking-[0.18em] drop-shadow-[0_10px_25px_rgba(0,0,0,0.25)]'>
+								<span className='block mt-1 text-[clamp(2.8rem,10.5vw,7.5rem)] tracking-[0.10em] sm:tracking-[0.18em] drop-shadow-[0_10px_25px_rgba(0,0,0,0.25)]'>
 									PALACE
 								</span>
 								<div
 									aria-hidden
-									className='mx-auto mt-4 flex w-2/3 max-w-[22rem] items-center gap-3'
+									className='mx-auto mt-2 flex w-2/3 max-w-[22rem] items-center gap-3'
 								>
 									<div className='h-px flex-1 bg-black/70' />
 									<div className='h-2.5 w-2.5 rotate-45 border border-black/80 bg-black/10' />
@@ -330,7 +352,7 @@ const HeroSection = () => {
 
 					{/* Tagline */}
 					<div
-						className='mb-6 md:mb-8 transition-all duration-1000 ease-out'
+						className='mb-4 md:mb-8 transition-all duration-1000 ease-out'
 						style={{
 							opacity: loaded ? 1 : 0,
 							transform: loaded ? 'translateY(0)' : 'translateY(-20px)',
@@ -360,8 +382,8 @@ const HeroSection = () => {
 									<Star
 										key={i}
 										className={`w-3 h-3 ${i < 4
-												? 'text-primary fill-primary'
-												: 'text-primary/40 fill-primary/40'
+											? 'text-primary fill-primary'
+											: 'text-primary/40 fill-primary/40'
 											}`}
 									/>
 								))}
@@ -400,10 +422,11 @@ const HeroSection = () => {
 						className='flex flex-wrap items-center justify-center gap-4 mt-4 md:mt-4 transition-all duration-1000 ease-out'
 						style={{ opacity: loaded ? 1 : 0, transitionDelay: '1.6s' }}
 					>
-						<div className='inline-flex items-center gap-2 text-foreground/30 text-xs sm:text-sm font-elegant tracking-wider'>
-							<Clock className='w-3.5 h-3.5 text-primary/50' />
+						<div className='inline-flex items-start gap-2 text-foreground/30 text-xs sm:text-sm font-elegant tracking-wider'>
+							{/* <Clock className='hidden sm:block w-3.5 h-3.5 text-primary/50 mt-[2px] shrink-0' /> */}
 							<span>
-								Lun – Jeu · 08h–01h | Ven – Sam · 08h–02h | Dim · 09h–01h
+								<span className='block'>Lun - Jeu · 08h-01h</span>
+								<span className='block'>Ven - Sam · 08h-02h | Dim · 09h-01h</span>
 							</span>
 						</div>
 					</div>
@@ -420,7 +443,7 @@ const HeroSection = () => {
 					transitionDuration: '1s',
 				}}
 			>
-				<span className='font-elegant text-[10px] sm:text-xs tracking-[0.3em] uppercase opacity-0 group-hover:opacity-100 transition-opacity'>
+				<span className='hidden sm:block font-elegant text-[10px] sm:text-xs tracking-[0.3em] uppercase text-foreground/40 group-hover:text-foreground/70 opacity-100 transition-colors'>
 					Découvrir
 				</span>
 				<ChevronDown className='w-5 h-5 animate-bounce' />
