@@ -213,7 +213,7 @@ const HeroSection = () => {
 							<div className='hidden sm:block h-px w-10 sm:w-16 bg-gradient-to-r from-transparent to-primary/60' />
 							<div className='hidden sm:block h-2.5 w-2.5 rotate-45 border border-primary/50 bg-primary/10' />
 							<span className='min-w-0 rounded-full border border-primary/25 bg-primary/5 px-3 py-1 text-right text-primary font-bold font-elegant text-[9px] sm:text-xs md:text-sm tracking-[0.22em] sm:tracking-[0.32em] uppercase shadow-[0_0_18px_hsla(var(--primary)/0.10)] drop-shadow-[0_2px_10px_rgba(0,0,0,0.55)]'>
-								Restaurant
+								Brasserie
 							</span>
 						</div>
 
